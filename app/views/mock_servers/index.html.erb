@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mock Servers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mock_servers.each do |mock_server| %>
+      <tr>
+        <td><%= link_to 'Show', mock_server %></td>
+        <td><%= link_to 'Edit', edit_mock_server_path(mock_server) %></td>
+        <td><%= link_to 'Destroy', mock_server, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mock Server', new_mock_server_path %>
