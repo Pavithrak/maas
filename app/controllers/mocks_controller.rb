@@ -18,29 +18,28 @@ class MocksController < ApplicationController
   end
 
   def mock_post
-    get_result POST
+    get_result request
   end
 
   def mock_get
-    get_result GET
+    get_result request
   end
 
   def mock_put
-    get_result PUT
+    get_result request
   end
 
 
   def mock_delete
-    get_result DELETE
+    get_result request
   end
 
   private
-  def get_result method
+  def get_result request
     url = params[:other]
-    query_params = params.except(:other, :mock, :mock_server_id, :body)
     mock_server_id = params[:mock_server_id]
-    body = params[:body]
-    result = find_mocked_result(url, query_params, body, mock_server_id, method)
+    body = request.request_parameters.except("mock")
+    result = find_mocked_result(url, request.query_parameters, body, mock_server_id, request.method)
     render status: result[:status], json: result[:response]
   end
 
