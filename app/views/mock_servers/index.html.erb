@@ -12,10 +12,7 @@
   <tbody>
     <% @mock_servers.each do |mock_server| %>
       <tr>
-        <td><%= link_to 'Show', mock_server %></td>
-        <td><%= link_to 'Edit', edit_mock_server_path(mock_server) %></td>
-        <td><%= link_to 'Destroy', mock_server, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <td><%= link_to mock_server.name, mock_server %></td></tr>
     <% end %>
   </tbody>
 </table>

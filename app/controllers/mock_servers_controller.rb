@@ -10,6 +10,7 @@ class MockServersController < ApplicationController
   # GET /mock_servers/1
   # GET /mock_servers/1.json
   def show
+    @mocks = Mock.where(mock_server_id: @mock_server.id)
   end
 
   # GET /mock_servers/new
