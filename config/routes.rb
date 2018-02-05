@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :mock_servers do
     resources :mocks do
+      member do
+        get '' => 'mocks#show'
+        put '' => 'mocks#edit', as: 'edit'
+      end
       collection do
+        post '' => 'mocks#create'
         post 'when', to: :when, controller: 'mocks'
         get '*other'  => 'mocks#mock_get'
         post '*other'  => 'mocks#mock_post'

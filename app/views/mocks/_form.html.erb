@@ -1,0 +1,8 @@
+<%= form_tag(edit_mock_server_mock_path, method: "put") do %>
+  <input type="text" name="url" value="<%= mock.url%>" placeholder="url to mock"/>
+  <input type="text" name="method" value="<%= mock.method%>" placeholder="method"/>
+  <input type="text" name="query" value="<%= mock.query%>" placeholder="query parameter as json"/>
+  <input type="text" name="body" value="<%= mock.body%>" placeholder="body as json for post"/>
+  <input type="text" name="result" value="<%= mock.result%>" placeholder="response as json"/>
+  <%= submit_tag("Update") %>
+<% end %>

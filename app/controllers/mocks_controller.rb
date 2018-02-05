@@ -2,6 +2,33 @@ class MocksController < ApplicationController
   include MockService
   include MockServersHelper::HttpMethods
 
+  def show
+    @mock = Mock.find(params[:id])
+  end
+
+  def index
+    @mocks = Mock.where(mock_server_id: params["mock_server_id"])
+  end
+
+  def new
+    @mock = Mock.new
+  end
+
+  def create
+
+  end
+
+  def edit
+    body = request.request_parameters
+    updated_params = body.select {|key, value| ["url", "query", "method", "body", "result"].include? key }
+    Mock.update(params[:id], updated_params)
+    redirect_to :action => :index, :mock_server_id => params[:mock_server_id]
+  end
+
+  def delete
+
+  end
+
   def when
     mock_server_id = params[:mock_server_id]
     mock = Mock.new(mock_params.merge(mock_server_id: mock_server_id))
@@ -42,6 +69,7 @@ class MocksController < ApplicationController
     result = find_mocked_result(url, request.query_parameters, body, mock_server_id, request.method)
     render status: result[:status], json: result[:response]
   end
+
 
   def mock_params
     params.require(:mock).permit(:url, :body, :query, :result, :method)

@@ -12,7 +12,7 @@
   <tbody>
     <% @mock_servers.each do |mock_server| %>
       <tr>
-        <td><%= link_to mock_server.name, mock_server %></td></tr>
+        <td><%= link_to mock_server.name, mock_server_mocks_path(mock_server.id) %></td></tr>
     <% end %>
   </tbody>
 </table>

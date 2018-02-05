@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tbody>
+  <% @mocks.each do |mock| %>
+      <tr>
+        <td>URL</td>
+        <td><%= mock.url %></td>
+        <td rowspan="5"><%= link_to 'Edit', mock_server_mock_path(mock_server_id: mock.mock_server_id, id: mock.id) %></td>
+      </tr>
+      <tr>
+        <td>Method</td>
+        <td><%= mock.method %></td>
+      </tr>
+      <tr>
+        <td>Query</td>
+        <td><%= mock.query %></td>
+      </tr>
+      <tr>
+        <td>Body</td>
+        <td><%= mock.body %></td>
+      </tr>
+      <tr>
+        <td>Result</td>
+        <td><%= mock.result %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Back', mock_servers_path %>
