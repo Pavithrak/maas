@@ -11,11 +11,15 @@ class MocksController < ApplicationController
   end
 
   def new
-    @mock = Mock.new
+    @mock = Mock.new(mock_server_id: params["mock_server_id"])
   end
 
   def create
-
+    body = request.request_parameters
+    mock_params = body.select {|key, value| ["url", "query", "method", "body", "result"].include? key }.merge(mock_server_id: params["mock_server_id"])
+    mock = Mock.new(mock_params)
+    mock.save
+    redirect_to :action => :index, :mock_server_id => params[:mock_server_id]
   end
 
   def edit

@@ -1,6 +1,6 @@
 <h1>Editing Mock Server</h1>
 
-<%= render 'form', mock: @mock %>
+<%= render 'form', mock: @mock, path: edit_mock_server_mock_path, form_options: {method: "put"}%>
 
 <%= link_to 'Show', @mock_server %> |
 <%= link_to 'Back', mock_servers_path %>
