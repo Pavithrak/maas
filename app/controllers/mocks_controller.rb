@@ -8,6 +8,9 @@ class MocksController < ApplicationController
 
   def index
     @mocks = Mock.where(mock_server_id: params["mock_server_id"])
+    respond_to do |format|
+      format.json { render json: @mocks }
+    end
   end
 
   def new

@@ -56,7 +56,7 @@ RESPONSE {
              "message": "mock saved successfully"
          }
 
-
+Access POST endpoint
 
 POST
 http://localhost:3000/mock_servers/3/mocks/someother/someother_id?q1=val q1&q2=val q2
@@ -64,3 +64,9 @@ BODY {"attr1": "value 1"}
 RESULT {
            "name": "samp name post"
        }
+
+
+
+Get all mocks in a mock server
+
+GET http://localhost:3000/mock_servers/3/mocks.json
