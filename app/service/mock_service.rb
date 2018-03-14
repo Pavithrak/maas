@@ -2,12 +2,12 @@ module MockService
   def find_mocked_result(url, query_params, body, mock_server_id, method)
     matching_mocks = Mock.where(
                           mock_server_id: mock_server_id,
-                          url: url,
+                          url: "/#{url}",
                           method: method)
     matching_mocks.map do |m| puts m.url end
     mock = matching_mocks.find do |mock|
-      (query_params.nil? and mock.query.nil? ) or JSON.parse(mock.query) == query_params
-      (body.nil? and mock.body.nil?) or JSON.parse(mock.body) == body
+      JSON.parse(mock.query) == query_params and
+      JSON.parse(mock.body) == body
     end
     mock.nil? ?  {status: 404, response: {}} : {status: 200, response: mock.result }
   end

@@ -13,14 +13,6 @@ class MockServersController < ApplicationController
 
   end
 
-  # GET /mock_servers/new
-  def new
-    @mock_server = MockServer.new
-  end
-
-  # GET /mock_servers/1/edit
-  def edit
-  end
 
   # POST /mock_servers
   # POST /mock_servers.json
@@ -29,10 +21,8 @@ class MockServersController < ApplicationController
 
     respond_to do |format|
       if @mock_server.save
-        format.html { redirect_to @mock_server, notice: 'Mock server was successfully created.' }
         format.json { render :show, status: :created, location: @mock_server }
       else
-        format.html { render :new }
         format.json { render json: @mock_server.errors, status: :unprocessable_entity }
       end
     end

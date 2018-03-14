@@ -38,13 +38,12 @@ class MocksController < ApplicationController
     mock = Mock.new(mock_params.merge(mock_server_id: mock_server_id))
     if mock.save
       respond_to do |format|
-        format.json { render json: "mock saved successfully" }
+        format.json { render json: {'message': "mock saved successfully"} }
       end
     else
       respond_to do |format|
-        format.json { render json: "something went wrong" }
+        format.json { render json: {'message': "something went wrong"} }
       end
-
     end
   end
 
